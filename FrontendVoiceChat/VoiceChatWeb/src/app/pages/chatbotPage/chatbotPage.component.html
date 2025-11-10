@@ -1,0 +1,112 @@
+<div class="flex flex-col h-screen w-full bg-gray-50">
+  <header class="bg-gradient-to-r w-full from-blue-800 to-indigo-700 text-white shadow-lg rounded-b-2xl p-5">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">VoiceChat</h1>
+          <p class="text-sm opacity-90">Voz y chat en tiempo real</p>
+        </div>
+      </div> 
+    </div>
+    
+  </header>
+
+   <div class="flex-1 flex items-center justify-center p-6">
+    <div class="flex flex-col w-full max-w-2xl h-full bg-white rounded-2xl shadow-lg overflow-hidden">
+
+      <!-- Header -->
+      <header class="flex items-center gap-3 p-4 border-b">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold">
+          CB
+        </div>
+        <div class="flex-1">
+          <h1 class="text-lg font-semibold">VoiceChat</h1>
+          <p class="text-sm text-gray-500">VoiceChat con LMStudio</p>
+        </div>
+      </header>
+
+      <!-- Chat window -->
+      <main class="flex-1 p-4 overflow-auto space-y-4 bg-gradient-to-b from-white to-gray-50" id="chat-window">
+        <!-- Ejemplo de mensajes -->
+        <div class="flex justify-start flex-col gap-1">
+          @for (audio of chatAudios(); track $index) {
+            <div class="max-w-[75%]">
+            <div class="inline-block bg-gray-100 text-gray-900 px-4 py-2 rounded-2xl rounded-bl-none shadow">
+              <p class="text-gray-700">
+                <audio controls [src]="audio.content" class="mt-4 w-64"></audio>
+              </p>
+            </div>
+            <div class="text-xs text-gray-400 mt-1">{{ audio.timestamp | date: 'shortTime' }}</div>
+          </div>
+          }
+        </div>
+      </main>
+
+      <!-- Input -->
+      <footer >
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="p-4 border-t bg-white flex flex-col items-center gap-3">
+          <label class="block font-medium">Audio</label>
+          <!-- Bloque contenedor con overlay -->
+          <div class="relative w-full flex justify-center">
+            <app-audio-recorder formControlName="audio" #childRef></app-audio-recorder>
+            @if (isSending()) {
+              <div class="absolute inset-0 bg-white/70 grid place-items-center z-10">
+                <div class="flex items-center gap-2 text-emerald-700 text-sm">
+                  <svg
+                    class="animate-spin h-4 w-4"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      fill="none"
+                    />
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    />
+                  </svg>
+                  <span>Enviando audio…</span>
+                </div>
+              </div>
+            }
+          </div>
+        <!-- Botón -->
+        <button
+          type="submit"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2 rounded w-80 transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+          [disabled]="myForm.invalid || isSending()"
+        >
+          {{ isSending() ? 'Enviando…' : 'Enviar' }}
+        </button>
+      </form>
+    </footer>
+    </div>
+  </div>
+  <footer class="bg-neutral-900 text-gray-300 mt-10 border-t border-gray-700 w-full">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Contacto -->
+      <div>
+        <h3 class="text-white text-base font-semibold mb-3">Contacto</h3>
+        <ul class="space-y-1 text-sm">
+          <li>C/ Gabriela Mistral, 4 – Valdemoro, Madrid</li>
+          <li>+34 600 123 456</li>
+          <!-- <li>info@fitzonevaldemoro.com</li> -->
+        </ul>
+        <div class="flex space-x-4 mt-4 text-gray-400">
+          <a href="#" class="hover:text-red-500 transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-red-500 transition-colors"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-red-500 transition-colors"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>

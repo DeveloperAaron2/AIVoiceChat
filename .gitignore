@@ -1,0 +1,18 @@
+# Node / Angular
+FrontendVoiceChat/VoiceChatWeb/node_modules/
+FrontendVoiceChat/VoiceChatWeb/dist/
+
+# Python / Flask
+BackEndVoiceChat/__pycache__/
+BackEndVoiceChat/.env
+BackEndVoiceChat/tts_cache/
+BackEndVoiceChat/chat_history.json
+
+# Raíz
+tts_cache/
+chat_history.json
+
+# IDE / OS
+.vscode/
+.DS_Store
+Thumbs.db

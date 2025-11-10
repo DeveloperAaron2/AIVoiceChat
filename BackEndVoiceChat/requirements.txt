@@ -1,0 +1,25 @@
+# --- Core ---
+Flask==3.0.3
+flask-cors==4.0.1
+python-dotenv==1.0.1
+requests==2.32.3
+
+# --- Speech recognition (entrada micrófono / audio) ---
+SpeechRecognition==3.10.1
+faster-whisper==1.0.1
+ctranslate2>=4.2.0
+onnxruntime-gpu>=1.18.0 ; platform_system != "Darwin"
+numpy>=1.24.0
+soundfile==0.12.1
+
+# --- Text-to-Speech (salida) ---
+pyttsx3==2.90
+edge-tts==6.1.15
+aiohttp==3.9.5
+
+# --- ffmpeg wrapper ---
+pydub==0.25.1
+ffmpeg-python==0.2.0
+
+# --- Utilidades ---
+python-dotenv==1.0.1

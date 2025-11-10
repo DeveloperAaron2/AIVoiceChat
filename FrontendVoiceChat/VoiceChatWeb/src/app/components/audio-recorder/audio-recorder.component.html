@@ -1,0 +1,30 @@
+
+<div class="flex flex-col items-center justify-center space-y-4 mt-10">
+<!-- Botón -->
+@if (isRecording()) {
+<button
+  type="button"
+  (click)="toggleRecording()"
+  class="px-6 py-3 rounded-full text-white font-semibold transition-all duration-300 bg-red-600 animate-pulse"
+>
+  Grabando...
+</button>
+} @else {
+  <button
+    type="button"
+    (click)="toggleRecording()"
+    class="px-6 py-3 rounded-full text-white font-semibold transition-all duration-300 bg-blue-600 hover:bg-blue-700"
+  >
+    🎙️ Iniciar grabación
+  </button>
+}
+
+<!-- Estado -->
+  @if ((audioUrl())) {
+    <p class="text-gray-700">
+      <audio controls [src]="audioUrl()" class="mt-4 w-64"></audio>
+  </p>
+  
+  }
+
+</div>
